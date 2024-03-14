@@ -30,12 +30,37 @@ public class BST {
      * @param element inserted element
      */
     public void insert(int element) {
-        if (this.size() != 0) {
+        Node current = root;
+        boolean stillInserting = true;
 
-        } else {
+        if (this.size() != 0) {
+            while (stillInserting) {
+                if (element < current.getKey()) { //left
+                    Node leftChild = current.getLeftChild();
+                    if (leftChild != null) {
+                        current = leftChild;
+                    } else {
+                        current.setLeftChild(new Node(element, current, null, null));
+                        stillInserting = false;
+                        this.counter++;
+                    }
+                } else {//right
+                    if (element > current.getKey()) {
+                        Node rightChild = current.getRightChild();
+                        if (rightChild != null) {
+                            current = rightChild;
+                        } else {
+                            current.setRightChild(new Node(element, current, null, null));
+                            stillInserting = false;
+                            this.counter++;
+                        }
+                    }
+                }
+            } //while
+        } else { //if BST is empty
             this.root  = new Node(element);
         }
-    }
+    } //insert
 
     /**
      * deletes an element from the binary search tree.
@@ -43,7 +68,10 @@ public class BST {
      * @int element deleted element
      */
     public void delete(int element) {
-        throw new UnsupportedOperationException("not implemented");
+        Node current = root;
+        boolean stillInserting = true;
+
+
     }
 
     /**
