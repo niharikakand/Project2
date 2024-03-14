@@ -2,7 +2,63 @@
  * binary search class.
  */
 public class BST {
+    //creates the instance variables for the class.
 
+    private Node root;
+    private int counter;
+
+    /**
+     * the binary search tree constructor, initializes values to 0.
+     */
+    public BST(){
+        this.root = null;
+        this.counter = 0;
+    }
+
+    /**
+     * size method.
+     * @return int size
+     */
+    public int size(){
+        return counter;
+    }
+
+    /**
+     * inserts new element into the tree.
+     * @param element inserted element
+     */
+    public void insert(int element){
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * deletes an element from the binary search tree.
+     * @int element deleted element
+     */
+    public void delete(int element){
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * prints binary search trees in their order in preorder transversal.
+     */
+    public void preorder(){
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * prints binary search tree in their order in postorder transversal.
+     */
+    public void postorder(){
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * prints the binary search tree in their order in inorder transversal.
+     */
+    public void inorder(){
+        throw new UnsupportedOperationException("not implemented");
+    }
 }
 
 /**
