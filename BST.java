@@ -10,7 +10,7 @@ public class BST {
     /**
      * the binary search tree constructor, initializes values to 0.
      */
-    public BST() {
+     BST() {
         this.root = null;
         this.counter = 0;
     }
@@ -35,32 +35,33 @@ public class BST {
 
         if (this.size() != 0) {
             while (stillInserting) {
-                if (element < current.getKey()) { //left
+                if (element < current.getKey()) { // left search
                     Node leftChild = current.getLeftChild();
-                    if (leftChild != null) {
+                    if (leftChild != null) { // traverse down
                         current = leftChild;
-                    } else {
+                    } else { // sets new node
                         current.setLeftChild(new Node(element, current, null, null));
                         stillInserting = false;
                         this.counter++;
                     }
-                } else {//right
-                    if (element > current.getKey()) {
-                        Node rightChild = current.getRightChild();
-                        if (rightChild != null) {
-                            current = rightChild;
-                        } else {
-                            current.setRightChild(new Node(element, current, null, null));
-                            stillInserting = false;
-                            this.counter++;
-                        }
+                } else if (element > current.getKey()) { // right search
+                    Node rightChild = current.getRightChild();
+                    if (rightChild != null) { // traverse down
+                        current = rightChild;
+                    } else { // sets new node
+                        current.setRightChild(new Node(element, current, null, null));
+                        stillInserting = false;
+                        this.counter++;
                     }
+                } else { // duplicate
+                    System.out.println("Element is already in the tree");
                 }
-            } //while
-        } else { //if BST is empty
-            this.root  = new Node(element);
+            } // while loop
+        } else { // if BST is empty
+            this.root = new Node(element);
+            this.counter++;
         }
-    } //insert
+    } // insert
 
     /**
      * deletes an element from the binary search tree.
@@ -68,9 +69,50 @@ public class BST {
      * @int element deleted element
      */
     public void delete(int element) {
-        Node current = root;
-        boolean stillInserting = true;
+        if (this.size() != 0) {
+            this.deleteNode(this.root, element);
+        }
+    }
 
+    /**
+     * helper method for delete() method
+     *
+     * @param current - the current node being inspected
+     * @param element -  the value of the node to be deleted
+     */
+    private Node deleteNode(Node current, int element) {
+        if (current == null) { // base case, node not found
+            System.out.println("Element not found!");
+        } else if (current.getKey() > element) { // traverse down left
+            current.setLeftChild(deleteNode(current.getLeftChild(), element));
+        } else if (current.getKey() < element) { // traverse down right
+            current.setRightChild(deleteNode(current.getRightChild(), element));
+        } else { //  element is found, current.getKey() == element
+
+            // if node has 0 or 1 child
+            if (current.getLeftChild() == null) {
+                this.counter--;
+                return current.getRightChild();
+            } else if (current.getRightChild() == null) {
+                this.counter--;
+                return current.getLeftChild();
+                // if node has 2 children, replace with largest value in left subtree
+            } else {
+                Node max = current.getLeftChild();
+                while (max.getRightChild() != null) { //finding maximum element in left subtree
+                    max = max.getRightChild();
+                }
+
+                // moves the largest value in left subtree up to be the new node
+                current.setKey(max.getKey());
+                // deletes the actual node that contained the largest value that was just moved up
+                current.setLeftChild(deleteNode(current.getLeftChild(), max.getKey()));
+                this.counter--;
+            }
+
+        }
+
+        return current;
 
     }
 
@@ -78,32 +120,55 @@ public class BST {
      * prints binary search trees in their order in preorder transversal.
      */
     public void preorder() {
-        throw new UnsupportedOperationException("not implemented");
+        if (this.size() != 0) {
+            this.preorderHelper(root);
+        }
     }
 
     /**
      * prints binary search tree in their order in postorder transversal.
      */
     public void postorder() {
-        throw new UnsupportedOperationException("not implemented");
+        if (this.size() != 0) {
+            this.postorderHelper(root);
+        }
     }
 
     /**
      * prints the binary search tree in their order in inorder transversal.
      */
     public void inorder() {
-        throw new UnsupportedOperationException("not implemented");
+        if (this.size() != 0) {
+            this.inorderHelper(root);
+        }
     }
 
     //PRIVATE METHODS
     private void preorderHelper(Node current) {
-
+        if (current == null) {
+            return;
+        }
+        System.out.print(current.getKey() + " ");
+        preorderHelper(current.getLeftChild());
+        preorderHelper(current.getRightChild());
     }
+
     private void postorderHelper(Node current) {
-
+        if (current == null) {
+            return;
+        }
+        postorderHelper(current.getLeftChild());
+        postorderHelper(current.getRightChild());
+        System.out.print(current.getKey() + " ");
     }
-    private void inorderHelper(Node current) {
 
+    private void inorderHelper(Node current) {
+        if (current == null) {
+            return;
+        }
+        inorderHelper(current.getLeftChild());
+        System.out.print(current.getKey() + " ");
+        inorderHelper(current.getRightChild());
     }
 
     /**
