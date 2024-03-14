@@ -2,6 +2,7 @@
  * binary search class.
  */
 public class BST {
+
     //PRIVATE METHODS
     private void preorderHelper(Node current) {
 
@@ -16,9 +17,9 @@ public class BST {
     /**
      * node class to be referenced by BST.
      */
-    class Node {
 
-        // FIELDS
+    //FIELDS
+    class Node {
         private int key;
         private Node parent;
         private Node leftChild;
@@ -64,7 +65,7 @@ public class BST {
             this.rightChild = rightChild;
         }
 
-        //GETTERS and SETTERS
+        //GETTER SETTERS
 
         /**
          * gets Key.
@@ -140,7 +141,4 @@ public class BST {
             this.rightChild = rightChild;
         }
     } //Node class
-
 } //BST class
-
-
