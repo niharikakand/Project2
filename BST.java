@@ -30,7 +30,11 @@ public class BST {
      * @param element inserted element
      */
     public void insert(int element) {
-        throw new UnsupportedOperationException("not implemented");
+        if (this.size() != 0) {
+
+        } else {
+            this.root  = new Node(element);
+        }
     }
 
     /**
