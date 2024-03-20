@@ -54,6 +54,7 @@ public class BST {
                     }
                 } else { // duplicate
                     System.out.println("Element is already in the tree");
+                    stillInserting = false;
                 }
             } // while loop
         } else { // if BST is empty
