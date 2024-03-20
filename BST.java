@@ -2,7 +2,6 @@
  * binary search class.
  */
 public class BST {
-
     //creates the instance variables for the class.
     private Node root;
     private int counter;
