@@ -107,7 +107,7 @@ public class BST {
                 current.setKey(max.getKey());
                 // deletes the actual node that contained the largest value that was just moved up
                 current.setLeftChild(deleteNode(current.getLeftChild(), max.getKey()));
-                this.counter--;
+
             }
 
         }

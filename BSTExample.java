@@ -54,7 +54,5 @@ public class BSTExample {
         System.out.println("Expected:\t" + "7");
         System.out.println("Your Tree:\t" + tree.size());
 
-        tree.insert(14);
-
     }
 }

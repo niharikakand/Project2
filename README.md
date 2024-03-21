@@ -1,4 +1,3 @@
-# Project2
 
 Names: Audrey Floyd, Nihariaka Kandepu, Jenna Odom
 
